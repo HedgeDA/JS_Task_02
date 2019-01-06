@@ -27,6 +27,7 @@ function Player() {
     let index = 0;
 
     controls.getElementsByClassName('playstate')[0].addEventListener('click', function() {
+        console.log('+');
         if (audio.src !== songs[index].link) {
             audio.src = songs[index].link;
             title.title = songs[index].song;
@@ -43,7 +44,7 @@ function Player() {
         }
     });
 
-    controls.getElementsByClassName('fa-stop')[0].addEventListener('click', function() {
+    controls.getElementsByClassName('stop')[0].addEventListener('click', function() {
         mediaPlayer.classList.remove('play');
 
         audio.src = '';
@@ -51,7 +52,7 @@ function Player() {
         audio.stop();
     });
 
-    controls.getElementsByClassName('fa-backward')[0].addEventListener('click', function() {
+    controls.getElementsByClassName('back')[0].addEventListener('click', function() {
         index--;
         if (index < 0) {
             index = songs.length - 1;
@@ -60,12 +61,12 @@ function Player() {
         audio.src = songs[index].link;
         title.title = songs[index].song;
 
-        mediaPlayer.classList.add('play');
-
-        audio.play()
+        if (mediaPlayer.classList.contains('play')) {
+            audio.play()
+        }
     });
 
-    controls.getElementsByClassName('fa-forward')[0].addEventListener('click', function() {
+    controls.getElementsByClassName('next')[0].addEventListener('click', function() {
         index++;
         if (index > songs.length - 1) {
             index = 0;
@@ -74,9 +75,9 @@ function Player() {
         audio.src = songs[index].link;
         title.title = songs[index].song;
 
-        mediaPlayer.classList.add('play');
-
-        audio.play()
+        if (mediaPlayer.classList.contains('play')) {
+            audio.play()
+        }
     });
 }
 
